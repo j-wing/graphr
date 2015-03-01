@@ -13,15 +13,15 @@ module.exports = function(grunt) {
             build: {
                 files: [{
                     expand: true,
-                    cwd: 'js/',
-                    src: ['**/*.js'],
+                    cwd: 'js/es6',
+                    src: ['*.js'],
                     dest: 'dist/',
                 }],
             }
         },
         "watch":{
             files: [
-                'js/*.js',
+                'js/es6/*.js',
             ],
           tasks: ['6to5']
 
