@@ -1,13 +1,12 @@
-class Node {
-    constructor() {
-        alert("Wow!");
-    }
+class Edge {
+	/* Constructors */
+	constructor(fromNode, toNode, weight) {
+		this.fromNode = fromNode
+		this.toNode = toNode
+		this.weight = weight
+	}
 
-    sayHi() {
-        let x = 6;
-        alert("Hi!${x}");
-    }
+	/* Render methods */
+	render() { }
+	drawLine() { }
 }
-
-window.myNode = new Node()
-myNode.sayHi()
