@@ -3,7 +3,10 @@
 <html>
     <head>
         <title>Graphr!</title>
-        <script type="text/javascript" src="js/out.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js"></script>
+        <script type="text/javascript">
+            require(["dist/app.js"])
+        </script>
     </head>
     <body>
         <canvas id="canvas"></canvas>
