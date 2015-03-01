@@ -19,6 +19,13 @@ module.exports = function(grunt) {
                 }],
             }
         },
+        "watch":{
+            files: [
+                'js/*.js',
+            ],
+          tasks: ['6to5']
+
+        }
 
         // copy: {
         //     main: {
@@ -31,6 +38,6 @@ module.exports = function(grunt) {
         //     },
         // }
     });
-
-    grunt.registerTask('default', ['6to5']);
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.registerTask('default', ['watch']);
 }

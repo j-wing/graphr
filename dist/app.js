@@ -6,4 +6,5 @@ define(["exports", "./node"], function (exports, _node) {
 
   var myNode = new node.Node(20, "doqwjdopjd");
   alert(myNode.value);
+  alert("hi thee");
 });
