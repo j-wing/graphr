@@ -27,7 +27,7 @@ class GraphrApp {
         this.setCanvasSize();
         this.options = new UserOptions();
 
-        this.graph = Graph.randomGraph();
+        this.graph = Graph.simpleGraph(2, false);
     }
 
     run() {
@@ -43,6 +43,7 @@ class GraphrApp {
     }
 
     renderLoop() {
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.ctx.fillStyle = "lightblue";
         this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.graph.render(this.ctx);
