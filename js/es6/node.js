@@ -1,8 +1,10 @@
+import {CanvasUtils} from "dist/canvas_utils"
+
 export class Node {
 	/* Constructors */
     constructor(value, pos) {
         this.value = value;
-        this.radius = 20 * this.value * .5;
+        this.radius = 5 * this.value;
         this.pos = pos;
         this.x = null;
         this.y = null;
@@ -10,24 +12,33 @@ export class Node {
 
     set coords(pair) {
         this.x = pair[0];
-        this.y = pair[1]
+        this.y = pair[1];
+    }
+
+    get coords() {
+    	return [this.x, this.y];
+    }
+
+    setAngle(a) {
+    	this.angle = a
+    }
+
+    getAngle() {
+    	return this.angle
     }
 
     /* Render methods */
     render(ctx) {
         if (!this.x || !this.y) {
+        	// console.log("x and y for {0} are undefined".format(this))
             return;
         }
 
-        ctx.font = "20px Helvetica";
-        ctx.fillStyle = "black";
-        ctx.textAlign = "center"; 
-        ctx.fillText(this.value.toString(), this.x, this.y);
-
-        ctx.strokeStyle = "black";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-        ctx.stroke();
+        // Then render the actual node
+        // radius = this.value.toString()
+        var radius = 25
+        CanvasUtils.drawCircle(ctx, this.x, this.y, radius, "white");
+        CanvasUtils.drawText(ctx, this.x, this.y, this.value.toString())
 
     }
 

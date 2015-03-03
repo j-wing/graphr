@@ -27,7 +27,7 @@ class GraphrApp {
         this.setCanvasSize();
         this.options = new UserOptions();
 
-        this.graph = Graph.simpleGraph(2, false);
+        this.graph = Graph.randomGraph(8, false);
     }
 
     run() {
@@ -56,5 +56,9 @@ class GraphrApp {
 
 $(document).ready(function() {
     window.App = new GraphrApp();
+    var graph = App.graph
+    console.log(graph.getEdgesFrom(graph.getVertex(0)))
+
+
     App.run();
 })
