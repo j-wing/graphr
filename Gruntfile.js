@@ -7,7 +7,8 @@ module.exports = function(grunt) {
         '6to5': {
             options: {
                 modules: 'amd',
-                "watch":true
+                sourceMap:true,
+                experimental:true,
             },
 
             build: {
