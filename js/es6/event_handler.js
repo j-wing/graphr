@@ -46,7 +46,7 @@ export class EventHandler {
 				cancelable: true
 			})
 
-			document.dispatchEvent(e)
+			this.canvas[0].dispatchEvent(e)
 		}, this.longpressLatency)
 	}
 
@@ -68,9 +68,7 @@ export class EventHandler {
 			if (interactable.posInBound(this.mousePos)) {
 				startNode = interactable
 			}
-		}
 
-		for (var interactable of this._interactables) {
 			if (interactable.posInBound(endPos)) {
 				endNode = interactable
 			}
@@ -91,7 +89,7 @@ export class EventHandler {
 					cancelable: false
 				})
 
-				document.dispatchEvent(e)
+				$("#canvas")[0].dispatchEvent(e)
 			}
 		}
 

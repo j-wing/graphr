@@ -64,12 +64,10 @@ export class Node {
    		var checkX = this.x - this.radius >= xmax || xmin >= this.x + this.radius
    		var checkY = this.y - this.radius >= ymax || ymin >= this.y + this.radius
    		return !(checkX || checkY)
-
-   		// console.log(!(checkX && checkY))
-   		return false
    	}
 
     /* Event Handlers */
+    // NEEDS TO CHANGE
     handleClick() {
     	if (!this.clicked) {
     		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 1, "rgb(69,140,191)")

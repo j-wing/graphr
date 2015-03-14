@@ -221,6 +221,11 @@ export class Graph {
     /* TODO: Need to handle updating the graph when a new node/edge is added */
     render(ctx) {
         // if (this.rendered) {
+
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.ctx.fillStyle = "lightblue";
+        this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+
     	// Render all edges first
     	for (var edge of this.getEdges()) {
     		edge.render(ctx);

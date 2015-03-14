@@ -1,15 +1,52 @@
  <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Grphr</title>
-        <script src="js/require.min.js"></script>
-        <script src="js/browser-polyfill.js"></script>
-        <script type="text/javascript">
-            require(["bower_components/jquery/dist/jquery.min.js", "js/underscore-min.js", "dist/app.js"])
-        </script>
-    </head>
-    <body style="margin: 0;">
-        <canvas id="canvas"></canvas>
-    </body>
+
+<head>
+	<title>Grphr</title>
+
+	<!-- CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:100,500,300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Exo:100,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+
+
+	<!-- JS -->
+	<script src="js/require.min.js"></script>
+	<script src="js/browser-polyfill.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		require(["js/underscore-min.js","js/heapq.js", "dist/app.js"])
+	</script>
+
+	<script src="js/sidebar.js"></script>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+	<div id="sidebar-toggle"></div>
+	<aside id="sidebar">
+		<ul class="main-menu" id="algorithms">
+			<li class="menu-item">
+				<div class="menu-title">Algorithms</div>
+				<ul>
+					<li class="submenu-item">Dijkstra's</li>
+					<li class="submenu-item">DFS</li>
+				</ul>
+			</li>
+
+			<li class="menu-item" id="settings">
+				<div class="menu-title">Settings</div>
+				<ul>
+					<li class="submenu-item">Directed?</li>
+					<li class="submenu-item">Weighted?</li>
+				</ul>
+			</li>
+		</ul>
+	</aside>
+</body>
+
 </html>

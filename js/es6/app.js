@@ -25,6 +25,7 @@ class GraphrApp {
     constructor() {
         this.canvas = $("canvas");
         this.ctx = this.canvas[0].getContext("2d");
+        this.ctx.translate(0.5, 0.5)
         this.setCanvasSize();
         this.options = new UserOptions();
 
@@ -33,14 +34,14 @@ class GraphrApp {
         	this.canvasHeight
         ]
 
-        this.graph = new Graph(this.ctx, bounds, false);
+        this.graph = new Graph(this.ctx, bounds, true);
     }
 
     run() {
         // window.requestAnimationFrame(() =>
         //     this.renderLoop()
         // );
-		this.renderLoop()
+		this.render()
     }
 
     setCanvasSize() {
@@ -49,7 +50,7 @@ class GraphrApp {
         this.canvas.attr("height", this.canvasHeight).attr("width", this.canvasWidth);
     }
 
-    renderLoop() {
+    render() {
         this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.ctx.fillStyle = "lightblue";
         this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -86,16 +87,18 @@ $(document).ready(function() {
 	graph.eventHandler = eh
 	var nextNodeValue = 1
 
+    var canvas = document.getElementById("canvas")
+
 	// register handlers
-	document.addEventListener('mousedown', e =>
+	canvas.addEventListener('mousedown', e =>
 		eh.mousedownHandler(e)
 	)
-	document.addEventListener('mouseup', e =>
+	canvas.addEventListener('mouseup', e =>
 		eh.mouseupHandler(e)
 	)
 
 	// register custom handlers
-	document.addEventListener('longpress', function() {
+	canvas.addEventListener('longpress', function() {
 		var newNode = new Node(nextNodeValue, eh.mousePosX, eh.mousePosY)
 		if (!App.collidesWithAny(newNode)) {
 			graph.addNode(newNode)
@@ -104,7 +107,7 @@ $(document).ready(function() {
 		}
 	}, false)
 
-	document.addEventListener('edgecreated', e => {
+	canvas.addEventListener('edgecreated', e => {
 		var fromNode = e.detail.start
 		var toNode = e.detail.end
 		graph.addEdge(fromNode, toNode, 1)

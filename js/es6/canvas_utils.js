@@ -26,17 +26,20 @@ export class CanvasUtils {
 	static drawLine(ctx, coordFrom, coordTo, lineWidth, directed, stroke=true, color="black") {
 		ctx.beginPath();
 		ctx.moveTo(coordFrom[0], coordFrom[1]);
-		ctx.lineTo(coordTo[0], coordTo[1]);
+		// ctx.lineTo(coordTo[0], coordTo[1]);
+		ctx.quadraticCurveTo(coordFrom[0], coordFrom[1], coordTo[0], coordTo[1]);
 		// Need to add code that draws an arrow when directed = True
 		ctx.strokeStyle = color;
 		ctx.lineWidth = lineWidth;
-		
+
 		if (stroke) {
 			ctx.stroke();
 		}
 		else {
 			ctx.closePath();
 		}
+		ctx.stroke();
+		console.log("stroke")
 	}
 
 }
