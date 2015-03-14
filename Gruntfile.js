@@ -15,7 +15,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'js/es6',
-                    src: ['*.js'],
+                    src: ['*.js', 'algorithms/*.js'],
                     dest: 'dist/',
                 }],
             }
@@ -23,6 +23,7 @@ module.exports = function(grunt) {
         "watch":{
             files: [
                 'js/es6/*.js',
+                'js/es6/algorithms/*.js',
             ],
           tasks: ['6to5']
 
