@@ -1,11 +1,12 @@
 import {Node} from "dist/node";
 import {Edge} from "dist/edge";
-
+import * as algos from "dist/algorithms/algorithms";
 
 var MAX_WEIGHT = 5;
 var maxRandomEdgesPercent = .25
 export class Graph {
     constructor(ctx, bounds, directed=true, allowNegativeEdges=false) {
+        window.graph = this;
     	this.ctx = ctx
         this.vertices = [];
         this.edges = new Map();
@@ -13,6 +14,11 @@ export class Graph {
 
         this.startNode = null;
         this.rendered = false;
+
+        // Disables graph modification during algorithm execution
+        this.algorithmExecuting = false;
+        this.selectedNode = null;
+        this.selectedEdge = null;
 
         this.allowNegativeEdges = allowNegativeEdges;
 
@@ -31,6 +37,9 @@ export class Graph {
     }
 
     addNode(node) {
+        if (this.algorithmExecuting) {
+            return;
+        }
     	this.vertices.push(node)
     	this.edges.set(node, new Set())
     	if (node.x != null && node.y != null) {
@@ -45,6 +54,10 @@ export class Graph {
     }
 
     addEdge(fromNode, toNode, weight) {
+        if (this.algorithmExecuting) {
+            return;
+        }
+
     	var newEdge = new Edge(fromNode, toNode, weight)
     	if (this.hasEdge(fromNode, toNode)) {
     		var edge = this.getEdge(fromNode, toNode)
@@ -112,6 +125,47 @@ export class Graph {
     /* Returns the number of edges */
     numEdges() {
     	return this.getEdges().length
+    }
+
+    beginAlgorithm(name) {
+        /*
+            @params: string name
+            @returns: AlgorithmState object, 
+                        or null if no registered algorithm with `name` exists
+        */
+
+        var stateCls = algos.ALGORITHM_STATES[name];
+        if (!stateCls) {
+            return null;
+        }
+
+        var state = new stateCls(this);
+        if (state.requiresStartNode) {
+            this.chooseStartNode();
+        }
+
+        this.algorithmExecuting = true;
+        return state;
+    }
+
+    chooseStartNode() {
+        alert("Implement a way to choose a start node!");
+    }
+
+    setSelectedNode(node) {
+        if (this.selectedNode) {
+            this.selectedNode.setSelected(false);
+        }
+        this.selectedNode = node;
+        this.selectedNode.setSelected(true);
+    }
+
+    setSelectedEdge(edge) {
+        if (this.selectedEdge) {
+            this.selectedEdge.setSelected(false);
+        }
+        this.selectedEdge = edge;
+        this.selectedEdge.setSelected(true);
     }
 
     /* Sets up the position of the graph */

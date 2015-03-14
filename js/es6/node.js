@@ -37,6 +37,16 @@ export class Node {
     	return this.angle
     }
 
+    setSelected(selected) {
+      this.selected = selected;
+      if (selected) {
+        CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 3, "green")
+      }
+      else {
+        CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 3, "lightblue")
+      }
+    }
+
    	/* Utility methods */
 
    	// Returns true if pos is in this node's bounds
@@ -62,7 +72,7 @@ export class Node {
     /* Event Handlers */
     handleClick() {
     	if (!this.clicked) {
-    		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 1, "rgb(69,140,191")
+    		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 1, "rgb(69,140,191)")
     	} else {
     		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+2, 4, "lightblue")
     	}
