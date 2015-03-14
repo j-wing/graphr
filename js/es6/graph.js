@@ -20,7 +20,6 @@ export class Graph {
         	w: bounds[0],
         	h: bounds[1]
         }
-        // console.log(this.bounds)
 
         this.render(this.ctx)
 
@@ -28,15 +27,7 @@ export class Graph {
     }
 
     addVertex(value, x=null, y=null) {
-        var node = new Node(value, x, y);
-        this.vertices.push(node);
-        this.edges.set(node, new Set());
-        if (x != null && y != null) {
-        	this.render(this.ctx)
-        	// console.log(this.vertices)
-        	console.log("re-render")
-        }
-
+        this.addNode(new Node(value, x, y));
     }
 
     addNode(node) {
@@ -44,13 +35,10 @@ export class Graph {
     	this.edges.set(node, new Set())
     	if (node.x != null && node.y != null) {
         	this.render(this.ctx)
-        	// console.log(this.vertices)
-        	console.log("re-render")
         }
 
 
         this.eventHandler.addInteractable(node)
-        console.log(this.eventHandler._interactables)
     }
 
     removeVertex(value) {
@@ -181,11 +169,12 @@ export class Graph {
         // if (this.rendered) {
     	// Render all edges first
     	for (var edge of this.getEdges()) {
-    		edge.render(ctx)
+    		edge.render(ctx);
     	}
+        ctx.stroke();
     	for (var node of this.vertices) {
     		// console.log(this.vertices.length)
-    		node.render(ctx)
+    		node.render(ctx);
     	}
         //} else {
         //	this.setUpGraph()
