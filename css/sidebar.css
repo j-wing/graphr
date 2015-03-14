@@ -90,14 +90,19 @@ body, p, div, ul, li, ol {
 	height: 50px;
 }
 
+#sidebar li.menu-item ul {
+	list-style: none;
+}
+
 #sidebar li.menu-item .submenu-item {
 	font-family: "Open Sans", sans-serif;
-	text-align:center;
+	text-align:left;
 	background-color: rgba(0,0,0, 0.2);
 	color:#ddd;
 	font-size:16px;
 
 	padding:0;
+	padding-left:30px;
 	opacity:0;
 	height:0;
 
@@ -112,7 +117,7 @@ body, p, div, ul, li, ol {
 }
 
 #sidebar li.menu-item.toggled .submenu-item {
-	padding: 20px 0;
+	padding: 20px 0 20px 30px;
 	opacity:1;
 	height: auto;
 }
