@@ -2,12 +2,13 @@ import {CanvasUtils} from "dist/canvas_utils"
 
 export class Node {
 	/* Constructors */
-    constructor(value, pos) {
+    constructor(value, x=null, y=null) {
         this.value = value;
-        this.radius = 5 * this.value;
-        this.pos = pos;
-        this.x = null;
-        this.y = null;
+        this.radius = 25;
+        this.x = x;
+        this.y = y;
+
+        this.clicked = false
     }
 
     set coords(pair) {
@@ -19,6 +20,15 @@ export class Node {
     	return [this.x, this.y];
     }
 
+    get boundingRect() {
+    	return [
+    		this.x - this.radius,
+    		this.y - this.radius,
+    		this.x + this.radius,
+    		this.y + this.radius
+    	]
+    }
+
     setAngle(a) {
     	this.angle = a
     }
@@ -27,12 +37,47 @@ export class Node {
     	return this.angle
     }
 
+   	/* Utility methods */
+
+   	// Returns true if pos is in this node's bounds
+   	posInBound(pos) {
+   		var checkX = Math.abs(pos[0] - this.x) < this.radius
+   		var checkY = Math.abs(pos[1] - this.y) < this.radius
+   		return checkX && checkY
+   	}
+
+   	collidesWith(node) {
+   		var xmin = node.x - node.radius;
+   		var xmax = node.x + node.radius;
+   		var ymin = node.y - node.radius;
+   		var ymax = node.y + node.radius;
+   		var checkX = this.x - this.radius >= xmax || xmin >= this.x + this.radius
+   		var checkY = this.y - this.radius >= ymax || ymin >= this.y + this.radius
+   		return !(checkX || checkY)
+
+   		// console.log(!(checkX && checkY))
+   		return false
+   	}
+
+    /* Event Handlers */
+    handleClick() {
+    	if (!this.clicked) {
+    		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+1, 1, "rgb(69,140,191")
+    	} else {
+    		CanvasUtils.drawCircleOutline(this.ctx, this.x, this.y, this.radius+2, 4, "lightblue")
+    	}
+    	this.clicked = !this.clicked
+    }
+
     /* Render methods */
     render(ctx) {
+        /* if x and y are undefined, don't render this node. */
         if (!this.x || !this.y) {
-        	// console.log("x and y for {0} are undefined".format(this))
             return;
         }
+
+        // Hacky solution
+        this.ctx = ctx
 
         // Then render the actual node
         // radius = this.value.toString()

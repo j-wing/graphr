@@ -5,7 +5,8 @@ import {Edge} from "dist/edge";
 var MAX_WEIGHT = 5;
 var maxRandomEdgesPercent = .25
 export class Graph {
-    constructor(directed=true, allowNegativeEdges=false) {
+    constructor(ctx, bounds, directed=true, allowNegativeEdges=false) {
+    	this.ctx = ctx
         this.vertices = [];
         this.edges = new Map();
         this.directed = directed;
@@ -15,35 +16,61 @@ export class Graph {
 
         this.allowNegativeEdges = allowNegativeEdges;
 
+        this.bounds = {
+        	w: bounds[0],
+        	h: bounds[1]
+        }
+        // console.log(this.bounds)
+
+        this.render(this.ctx)
+
+        this.eventHandler = null
     }
 
-    addVertex(value) {
-        var node = new Node(value);
+    addVertex(value, x=null, y=null) {
+        var node = new Node(value, x, y);
         this.vertices.push(node);
         this.edges.set(node, new Set());
+        if (x != null && y != null) {
+        	this.render(this.ctx)
+        	// console.log(this.vertices)
+        	console.log("re-render")
+        }
+
+    }
+
+    addNode(node) {
+    	this.vertices.push(node)
+    	this.edges.set(node, new Set())
+    	if (node.x != null && node.y != null) {
+        	this.render(this.ctx)
+        	// console.log(this.vertices)
+        	console.log("re-render")
+        }
+
+
+        this.eventHandler.addInteractable(node)
+        console.log(this.eventHandler._interactables)
     }
 
     removeVertex(value) {
-  //   	index = this.vertices.indexOf(value)
-  //   	if (index === -1) {
-  //   		console.log("Tried removing vertex {0}, not in vertices".format(value))
-  //   		return
-  //   	}
-
-		// index = this.vertices.indexOf(value)
-		// this.vertices.splice(index, 1)
-
-		// for (edge of edges) {
-		// 	if (edge.has())
-		// }
     }
 
     addEdge(fromNode, toNode, weight) {
+    	var newEdge = new Edge(fromNode, toNode, weight)
+    	if (this.hasEdge(fromNode, toNode)) {
+    		var edge = this.getEdge(fromNode, toNode)
+    		edge.weight = weight
+    		console.log("edge weight adjusted")
+    		return
+    	}
         this.edges.get(fromNode).add(new Edge(fromNode, toNode, weight));
         if (!this.directed) {
             // Add the reverse edge
             this.edges.get(toNode).add(new Edge(toNode, fromNode, weight));
         }
+        this.render(this.ctx)
+        console.log(this.numEdges())
     }
 
     removeEdge(edge) { }
@@ -52,7 +79,23 @@ export class Graph {
     	return this.vertices[v]
     }
 
-    hasEdge(u, v) { }
+    hasEdge(u, v) {
+    	var edgesFromU = this.edges.get(u)
+    	for (var edge of edgesFromU) {
+    		if (edge.toNode === v)
+    			return true
+    	}
+    	return false
+    }
+
+    getEdge(u, v) {
+    	var edgesFromU = this.edges.get(u)
+    	for (var edge of edgesFromU) {
+    		if (edge.toNode === v)
+    			return edge
+    	}
+    	return false
+    }
 
     /* Returns the outgoing edges from a vertex v */
     getEdgesFrom(v) {
@@ -79,7 +122,9 @@ export class Graph {
     }
 
     /* Returns the number of edges */
-    numEdges() { }
+    numEdges() {
+    	return this.getEdges().length
+    }
 
     /* Sets up the position of the graph */
     setUpGraph() {
@@ -88,7 +133,7 @@ export class Graph {
             this.startNode = this.vertices[0];
         }
 
-        this.startNode.coords = [App.canvasWidth / 2, App.canvasHeight / 2]
+        this.startNode.coords = [this.bounds.w / 2, this.bounds.h / 2]
 
         this.startNode.setAngle(0)
         // this.startNode.render(ctx)
@@ -133,18 +178,21 @@ export class Graph {
 
     /* TODO: Need to handle updating the graph when a new node/edge is added */
     render(ctx) {
-        if (this.rendered) {
-        	// Render all edges first
-        	for (var edge of this.getEdges()) {
-        		edge.render(ctx)
-        	}
-        	for (var node of this.vertices) {
-        		node.render(ctx)
-        	}
-        } else {
-        	this.setUpGraph()
-        }
+        // if (this.rendered) {
+    	// Render all edges first
+    	for (var edge of this.getEdges()) {
+    		edge.render(ctx)
+    	}
+    	for (var node of this.vertices) {
+    		// console.log(this.vertices.length)
+    		node.render(ctx)
+    	}
+        //} else {
+        //	this.setUpGraph()
+        //}
     }
+
+
 
     static simpleGraph(numVertices=2, directed=true, defaultValue=5) {
         var graph = new Graph(directed);
@@ -157,8 +205,8 @@ export class Graph {
         return graph;
     }
 
-    static randomGraph(numVertices=10, directed=true) {
-        var graph = new Graph(directed);
+    static randomGraph(ctx, numVertices=10, directed=true) {
+        var graph = new Graph(ctx, directed);
         for (var i = 1; i <= numVertices; i++) {
             graph.addVertex(i);
         }

@@ -7,6 +7,14 @@ export class CanvasUtils {
 		ctx.fill();
 	}
 
+	static drawCircleOutline(ctx, x, y, radius, strokeWidth, color="black") {
+		ctx.beginPath();
+		ctx.arc(x, y, radius, 0, 2*Math.PI);
+		ctx.strokeStyle = color;
+		ctx.lineWidth = strokeWidth
+		ctx.stroke();
+	}
+
 	static drawText(ctx, x, y, text, font="lighter 25px helvetica neue", color="black", align="center") {
 		ctx.font = font;
         ctx.fillStyle = color;
