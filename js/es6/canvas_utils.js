@@ -23,14 +23,20 @@ export class CanvasUtils {
         ctx.fillText(text, x, y+8); // Adjust for font height
 	}
 
-	static drawLine(ctx, coordFrom, coordTo, lineWidth, directed, color="black") {
+	static drawLine(ctx, coordFrom, coordTo, lineWidth, directed, stroke=true, color="black") {
 		ctx.beginPath();
 		ctx.moveTo(coordFrom[0], coordFrom[1]);
 		ctx.lineTo(coordTo[0], coordTo[1]);
 		// Need to add code that draws an arrow when directed = True
 		ctx.strokeStyle = color;
 		ctx.lineWidth = lineWidth;
-		ctx.stroke();
+		
+		if (stroke) {
+			ctx.stroke();
+		}
+		else {
+			ctx.closePath();
+		}
 	}
 
 }

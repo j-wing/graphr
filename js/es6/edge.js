@@ -12,12 +12,13 @@ export class Edge {
 	/* Render methods */
 	render(ctx) {
 		var lineWidth = Math.abs(this.weight)
-		lineWidth = 1 // for debugging purposes
+		lineWidth = 2 // for debugging purposes
 		CanvasUtils.drawLine(ctx,
 			this.fromNode.coords,
 			this.toNode.coords,
 			lineWidth,
-			this.directed
+			this.directed,
+			false
 		);
     }
 }
