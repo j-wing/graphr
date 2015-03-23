@@ -3,6 +3,8 @@ export class AlgorithmState {
         this.graph = graph;
         this.isFinished = false;
         this.startNode = null;
+        this.autoStepInterval = 0;
+        this.autoStepTimer = null;
     }
 
     requiresStartNode() {
@@ -18,6 +20,27 @@ export class AlgorithmState {
             Abstract method;
         */
         this.startNode = node;
+    }
+
+    autoStep() {
+        if (!this.isFinished) {
+            this.next();
+            this.autoStepTimer = setTimeout(this.autoStep.bind(this), this.autoStepInterval);
+        }
+
+    }
+
+    setAutoStepInterval(interval) {
+        /*
+            Sets the interval at which the algorithm automatically calls .next().
+            Set to 0 to disable auto-stepping.
+
+            TODO: determine whether this should call autoStep immediately, or after a delay of `interval`
+        */
+        this.autoStepInterval = interval;
+        if (interval !== 0) {
+            this.autoStepTimer = setTimeout(this.autoStep.bind(this), this.autoStepInterval);
+        }
     }
 
 

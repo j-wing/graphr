@@ -141,15 +141,16 @@ export class Graph {
 
         var state = new stateCls(this);
         if (state.requiresStartNode) {
-            this.chooseStartNode();
+            this.chooseStartNode(state);
         }
 
-        this.algorithmExecuting = true;
+        this.algorithmExecuting = state;
         return state;
     }
 
-    chooseStartNode() {
-        alert("Implement a way to choose a start node!");
+    chooseStartNode(state) {
+        console.error("Implement a way to choose a start node!");
+        state.setStartNode(this.vertices[0]);
     }
 
     setSelectedNode(node) {

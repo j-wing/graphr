@@ -2,7 +2,7 @@ import {Node} from "dist/node"
 import {Edge} from "dist/edge"
 import {Graph} from "dist/graph"
 import {EventHandler} from "dist/event_handler"
-
+import {Sidebar} from "dist/sidebar"
 class UserOptions {
     /* Class that manages options that the user can toggle. */
 
@@ -28,6 +28,8 @@ class GraphrApp {
         this.ctx.translate(0.5, 0.5)
         this.setCanvasSize();
         this.options = new UserOptions();
+        this.sidebar = new Sidebar();
+        this.sidebar.getAlgorithmElements().on("click", this.handleAlgorithmClick.bind(this));
 
         var bounds = [
         	this.canvasWidth,
@@ -42,6 +44,12 @@ class GraphrApp {
         //     this.renderLoop()
         // );
 		this.render()
+    }
+
+    handleAlgorithmClick(e) {
+        this.graph.beginAlgorithm(e.target.dataset.algorithmName);
+        this.graph.algorithmExecuting.next();
+        this.graph.algorithmExecuting.setAutoStepInterval(1000);
     }
 
     setCanvasSize() {

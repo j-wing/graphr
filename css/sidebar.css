@@ -124,7 +124,7 @@ body, p, div, ul, li, ol {
 	background-color: rgba(0,0,0, 0.3);
 }
 
-#sidebar li.menu-item.toggled .submenu-item {
+#sidebar li.menu-item .submenu-item {
 	padding: 20px 0 20px 30px;
 	opacity:1;
 	height: auto;
