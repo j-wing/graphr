@@ -16,7 +16,7 @@ export class Graph {
         this.rendered = false;
 
         // Disables graph modification during algorithm execution
-        this.algorithmExecuting = false;
+        this.executingAlgorithm = false;
         this.selectedNode = null;
         this.selectedEdge = null;
 
@@ -37,7 +37,7 @@ export class Graph {
     }
 
     addNode(node) {
-        if (this.algorithmExecuting) {
+        if (this.executingAlgorithm) {
             return;
         }
     	this.vertices.push(node)
@@ -54,7 +54,7 @@ export class Graph {
     }
 
     addEdge(fromNode, toNode, weight) {
-        if (this.algorithmExecuting) {
+        if (this.executingAlgorithm) {
             return;
         }
 
@@ -144,7 +144,7 @@ export class Graph {
             this.chooseStartNode(state);
         }
 
-        this.algorithmExecuting = state;
+        this.executingAlgorithm = state;
         return state;
     }
 
