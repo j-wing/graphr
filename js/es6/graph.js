@@ -62,7 +62,6 @@ export class Graph {
     	if (this.hasEdge(fromNode, toNode)) {
     		var edge = this.getEdge(fromNode, toNode)
     		edge.weight = weight
-    		console.log("edge weight adjusted")
     		return
     	}
         this.edges.get(fromNode).add(new Edge(fromNode, toNode, weight));
@@ -158,7 +157,7 @@ export class Graph {
 
     chooseEndNode(state) {
         console.error("Implement a way to choose an end node!");
-        state.setEndNode(this.vertices.splice(-1)[0]);
+        state.setEndNode(this.vertices.slice(-1)[0]);
     }
 
     setSelectedNode(node) {
