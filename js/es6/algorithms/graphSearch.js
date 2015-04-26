@@ -29,6 +29,8 @@ export default class GraphSearchBase extends algos.AlgorithmState {
 
     next() {
         var current = null;
+        // Get the next unseen node from the queue
+        // Nodes may have been added to the queue and then visited. 
         do {
             current = this.popNextNode();
         }
