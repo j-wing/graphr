@@ -20,5 +20,10 @@ export class Edge {
 			this.directed,
 			false
 		);
+		var midPoint = [
+			this.fromNode.coords[0] + (this.toNode.coords[0] - this.fromNode.coords[0]) / 2,
+			this.fromNode.coords[1] + (this.toNode.coords[1] - this.fromNode.coords[1]) / 2
+		]
+		CanvasUtils.drawText(ctx, midPoint[0], midPoint[1], this.weight)
     }
 }
