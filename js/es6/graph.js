@@ -140,8 +140,11 @@ export class Graph {
         }
 
         var state = new stateCls(this);
-        if (state.requiresStartNode) {
+        if (state.requiresStartNode()) {
             this.chooseStartNode(state);
+        }
+        if (state.requiresEndNode()) {
+            this.chooseEndNode(state);
         }
 
         this.executingAlgorithm = state;
@@ -151,6 +154,11 @@ export class Graph {
     chooseStartNode(state) {
         console.error("Implement a way to choose a start node!");
         state.setStartNode(this.vertices[0]);
+    }
+
+    chooseEndNode(state) {
+        console.error("Implement a way to choose an end node!");
+        state.setEndNode(this.vertices.splice(-1)[0]);
     }
 
     setSelectedNode(node) {
