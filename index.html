@@ -24,13 +24,18 @@
 			$("#canvas").attr({
                 height: window.innerHeight,
                 width: window.innerWidth
-            })
+            });
 			paper.view.draw()
 		}
 	</script>
 	<script type="text/javascript">
 		require(["js/underscore-min.js","js/heapq.js", "dist/app.js"], function() {
-			onAppLoaded()
+			var timer = setInterval(function() {
+				if (window.onAppLoaded) {
+					window.onAppLoaded();
+					clearTimeout(timer);
+				}
+			}, 100);
 		});
 		require(["dist/sidebar.js"]);
 	</script>
