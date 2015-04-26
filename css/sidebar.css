@@ -38,6 +38,13 @@ body, p, div, ul, li, ol {
 	/*left: calc(100% - 370px);*/
 }
 
+#sidebar-toggle::selection {
+	background-color: transparent;
+}
+#sidebar-toggle::-moz-selection {
+	background-color: transparent;
+}
+
 #sidebar {
 	position:absolute;
 	left:100%;
@@ -45,6 +52,8 @@ body, p, div, ul, li, ol {
 	height:100%;
 
 	background-color: rgba(0,0,0, 0.6);
+	/*border-top-left-radius:15px;*/
+	/*border-bottom-left-radius:15px;*/
 
 	/*border-left:1px solid black;*/
 	/*padding:30px;*/
