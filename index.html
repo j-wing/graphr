@@ -13,30 +13,13 @@
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
 
+
 	<!-- JS -->
 	<script src="js/require.min.js"></script>
 	<script src="js/browser-polyfill.js"></script>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/paper-full.min.js"></script>
-	<script type="text/paperscript" canvas="canvas">
-		paper.install(window)
-		window.onAppLoaded = function() {
-			$("#canvas").attr({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
-			paper.view.draw()
-		}
-	</script>
 	<script type="text/javascript">
-		require(["js/underscore-min.js","js/heapq.js", "dist/app.js"], function() {
-			var timer = setInterval(function() {
-				if (window.onAppLoaded) {
-					window.onAppLoaded();
-					clearTimeout(timer);
-				}
-			}, 100);
-		});
+		require(["js/underscore-min.js","js/heapq.js", "dist/app.js"]);
 		require(["dist/sidebar.js"]);
 	</script>
 </head>
@@ -52,7 +35,7 @@
 <!-- 					<li class="submenu-item">Dijkstra's</li>
 					<li class="submenu-item">DFS</li>
  -->				</ul>
-
+			
 			</li>
 
 			<li class="menu-item" id="settings">
