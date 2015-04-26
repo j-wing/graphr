@@ -48,8 +48,8 @@ class GraphrApp {
 
     handleAlgorithmClick(e) {
         this.graph.beginAlgorithm(e.target.dataset.algorithmName);
-        this.graph.algorithmExecuting.next();
-        this.graph.algorithmExecuting.setAutoStepInterval(1000);
+        this.graph.executingAlgorithm.next();
+        this.graph.executingAlgorithm.setAutoStepInterval(1000);
     }
 
     setCanvasSize() {
