@@ -3,6 +3,7 @@ export class AlgorithmState {
         this.graph = graph;
         this.isFinished = false;
         this.startNode = null;
+        this.endNode = null;
         this.autoStepInterval = 0;
         this.autoStepTimer = null;
     }
@@ -11,8 +12,18 @@ export class AlgorithmState {
         /*
             Abstract method;
             returns true if this state requires a start node to begin.
+            Defaults to false.
         */
-        throw "NotImplementedError";
+        return false;
+    }
+
+    requiresEndNode() {
+        /*
+            Abstract method;
+            returns true if this state requires an end node.
+            Also defaults to false.
+        */
+        return false;
     }
 
     setStartNode(node) {
@@ -20,6 +31,10 @@ export class AlgorithmState {
             Abstract method;
         */
         this.startNode = node;
+    }
+
+    setEndNode(node) {
+        this.endNode = node;
     }
 
     autoStep() {
