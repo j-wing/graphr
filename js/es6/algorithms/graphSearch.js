@@ -28,7 +28,6 @@ export default class GraphSearchBase extends algos.AlgorithmState {
     }
 
     next() {
-
         var current = null;
         do {
             current = this.popNextNode();
