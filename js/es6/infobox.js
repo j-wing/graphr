@@ -2,7 +2,7 @@ export class Infobox {
     constructor() {
         this.element = $("#infobox");
         this.nodeTable = $("<table><thead><tr><td>Node:</td><td>Dist: </td></tr></thead><tbody></tbody></table>");
-        this.element.append(this.nodeTable);
+        this.element.empty().append(this.nodeTable);
     }
 
     show() {
