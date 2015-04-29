@@ -49,6 +49,10 @@ export class AlgorithmState {
             this.autoStepTimer = setTimeout(this.autoStep.bind(this), this.autoStepInterval);
         }
 
+        else {
+            this.graph.algorithmFinished();
+        }
+
     }
 
     setAutoStepInterval(interval) {

@@ -32,6 +32,12 @@ export class Graph {
         this.eventHandler = null
     }
 
+    algorithmFinished() {
+        /* Called by algorithm when it finishes executing its last step. */
+        this.executingAlgorithm = null; 
+        this.setSelectedNode(null);
+    }
+
     addVertex(value, x=null, y=null) {
         this.addNode(new Node(value, x, y));
     }
@@ -169,7 +175,10 @@ export class Graph {
             this.selectedNode.setSelected(false);
         }
         this.selectedNode = node;
-        this.selectedNode.setSelected(true);
+
+        if (node) {
+            this.selectedNode.setSelected(true);
+        }
     }
 
     setSelectedEdge(edge) {
