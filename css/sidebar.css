@@ -136,7 +136,15 @@ body, p, div, ul, li, ol {
 }
 
 
-
+#infobox {
+	background-color: white;
+	border: 1px solid black;
+	width: 300px;
+	height: 400px;
+	position: absolute;
+	left:0;
+	top:0;
+}
 
 
 

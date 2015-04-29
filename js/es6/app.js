@@ -118,8 +118,7 @@ $(document).ready(function() {
 	canvas.addEventListener('edgecreated', e => {
 		var fromNode = e.detail.start
 		var toNode = e.detail.end
-		graph.addEdge(fromNode, toNode, 1)
-		// console.log("edge created")
+        graph.addEdge(fromNode, toNode, _.random(1, 100));
 	})
 
     // console.log(graph.getEdgesFrom(graph.getVertex(0)))

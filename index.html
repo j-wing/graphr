@@ -18,7 +18,6 @@
 	<script src="js/require.min.js"></script>
 	<script src="js/browser-polyfill.js"></script>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/paper-full.min.js"></script>
 	<script type="text/javascript">
 		require(["js/underscore-min.js","js/heapq.js", "dist/app.js"]);
 		require(["dist/sidebar.js"]);
@@ -27,6 +26,13 @@
 
 <body>
 	<canvas id="canvas"></canvas>
+	<div id="infobox-wrapper">
+		<div id="infobox">
+			Construct a graph by clicking to create nodes, and dragging between nodes to make edges.
+			<br /><br />
+			Nodes currently being analyzed by an algorithm will be outlined in green.
+		</div>
+	</div>
 	<div id="sidebar-toggle"></div>
 	<aside id="sidebar">
 		<ul class="main-menu">

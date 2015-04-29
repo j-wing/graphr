@@ -62,7 +62,6 @@ export class Graph {
     	if (this.hasEdge(fromNode, toNode)) {
     		var edge = this.getEdge(fromNode, toNode)
     		edge.weight = weight
-    		console.log("edge weight adjusted")
     		return
     	}
         this.edges.get(fromNode).add(new Edge(fromNode, toNode, weight));
@@ -144,8 +143,11 @@ export class Graph {
         }
 
         var state = new stateCls(this);
-        if (state.requiresStartNode) {
+        if (state.requiresStartNode()) {
             this.chooseStartNode(state);
+        }
+        if (state.requiresEndNode()) {
+            this.chooseEndNode(state);
         }
 
         this.executingAlgorithm = state;
@@ -155,6 +157,11 @@ export class Graph {
     chooseStartNode(state) {
         console.error("Implement a way to choose a start node!");
         state.setStartNode(this.vertices[0]);
+    }
+
+    chooseEndNode(state) {
+        console.error("Implement a way to choose an end node!");
+        state.setEndNode(this.vertices.slice(-1)[0]);
     }
 
     setSelectedNode(node) {
