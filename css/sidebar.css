@@ -159,7 +159,7 @@ body, p, div, ul, li, ol {
 	left:0px;
 	top:0;
 
-	overflow: scroll;
+	overflow: none;
 	/*text-align: center;*/
 }
 
