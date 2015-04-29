@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 	// Setup event handler
 	var latencies = {
-		'longpress': 300
+		'longpress': 0
 	}
 	var eh = new EventHandler("#canvas", latencies)
 	graph.eventHandler = eh
