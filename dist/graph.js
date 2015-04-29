@@ -38,6 +38,12 @@ define(["exports", "dist/node", "dist/edge", "dist/algorithms/algorithms"], func
       this.eventHandler = null;
     };
 
+    Graph.prototype.algorithmFinished = function () {
+      /* Called by algorithm when it finishes executing its last step. */
+      this.executingAlgorithm = null;
+      this.setSelectedNode(null);
+    };
+
     Graph.prototype.addVertex = function (value, x, y) {
       if (x === undefined) x = null;
       if (y === undefined) y = null;
@@ -178,7 +184,10 @@ define(["exports", "dist/node", "dist/edge", "dist/algorithms/algorithms"], func
         this.selectedNode.setSelected(false);
       }
       this.selectedNode = node;
-      this.selectedNode.setSelected(true);
+
+      if (node) {
+        this.selectedNode.setSelected(true);
+      }
     };
 
     Graph.prototype.setSelectedEdge = function (edge) {

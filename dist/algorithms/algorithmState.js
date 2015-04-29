@@ -50,6 +50,8 @@ define(["exports"], function (exports) {
       if (!this.isFinished) {
         this.next();
         this.autoStepTimer = setTimeout(this.autoStep.bind(this), this.autoStepInterval);
+      } else {
+        this.graph.algorithmFinished();
       }
     };
 
