@@ -12,13 +12,13 @@ export class Edge {
 	/* Render methods */
 	render(ctx) {
 		var lineWidth = Math.abs(this.weight)
-		lineWidth = 2 // for debugging purposes
+		lineWidth = .5 // for debugging purposes
 		CanvasUtils.drawLine(ctx,
 			this.fromNode.coords,
 			this.toNode.coords,
 			lineWidth,
 			this.directed,
-			false
+			true
 		);
 		var midPoint = [
 			this.fromNode.coords[0] + (this.toNode.coords[0] - this.fromNode.coords[0]) / 2,
