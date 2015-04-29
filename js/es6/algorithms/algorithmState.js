@@ -7,6 +7,12 @@ export class AlgorithmState {
         this.autoStepTimer = null;
     }
 
+    cancel() {
+        if (this.autoStepTimer) {
+            clearTimeout(this.autoStepTimer);
+        }
+    }
+
     requiresStartNode() {
         /*
             Abstract method;

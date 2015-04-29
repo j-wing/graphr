@@ -134,6 +134,10 @@ export class Graph {
                         or null if no registered algorithm with `name` exists
         */
 
+        if (this.algorithmExecuting) {
+            this.algorithmExecuting.cancel();
+        }
+
         var stateCls = algos.ALGORITHM_STATES[name];
         if (!stateCls) {
             return null;
