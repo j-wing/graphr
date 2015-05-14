@@ -2,7 +2,7 @@ import {Node} from "dist/node";
 import {Edge} from "dist/edge";
 import * as algos from "dist/algorithms/algorithms";
 
-var MAX_WEIGHT = 5;
+window.MAX_WEIGHT = 5;
 var maxRandomEdgesPercent = .25
 export class Graph {
     constructor(ctx, bounds, directed=true, allowNegativeEdges=false) {
